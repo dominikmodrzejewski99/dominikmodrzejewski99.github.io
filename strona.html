@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantyczny Weekend we Włoszech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .presentation {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 20px 0;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .slide:hover {
+            transform: translateY(-5px);
+        }
+
+        .slide-title {
+            font-size: 2.5em;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide-subtitle {
+            font-size: 1.8em;
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .slide-content {
+            font-size: 1.2em;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .day-plan {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .day-section {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .day-section h3 {
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .attraction {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .restaurant {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box {
+            background: rgba(52, 152, 219, 0.1);
+            border: 2px solid #3498db;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .flight-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .flight-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .heart {
+            color: #e74c3c;
+            font-size: 1.5em;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .map-placeholder {
+            background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            height: 200px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: #2d3436;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tips {
+            background: rgba(46, 204, 113, 0.1);
+            border: 2px solid #2ecc71;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .romantic-element {
+            text-align: center;
+            font-style: italic;
+            color: #e74c3c;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .day-plan {
+                grid-template-columns: 1fr;
+            }
+            .flight-info {
+                grid-template-columns: 1fr;
+            }
+            .slide {
+                padding: 20px;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Tytuł -->
+        <div class="slide" id="slide1">
+            <h1 class="slide-title">Romantyczny Weekend we Włoszech <span class="heart">♥</span></h1>
+            <h2 class="slide-subtitle">Bergamo • Mediolan • Como</h2>
+            <div class="slide-content">
+                <div class="flight-info">
+                    <div class="flight-card">
+                        <h3>✈️ WYLOT</h3>
+                        <p><strong>Piątek 21:30</strong></p>
+                        <p>Katowice → Bergamo</p>
+                    </div>
+                    <div class="flight-card">
+                        <h3>✈️ POWRÓT</h3>
+                        <p><strong>Niedziela 16:20</strong></p>
+                        <p>Bergamo → Katowice</p>
+                    </div>
+                </div>
+                <div class="romantic-element">
+                    "Amore, arte e architettura - magiczne połączenie na weekend pełen miłości"
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Plan ogólny -->
+        <div class="slide" id="slide2">
+            <h1 class="slide-title">Plan Weekendu</h1>
+            <div class="day-plan">
+                <div class="day-section">
+                    <h3>🌙 PIĄTEK WIECZÓR</h3>
+                    <p><strong>21:30</strong> - Przylot do Bergamo</p>
+                    <p><strong>22:30</strong> - Transfer do hotelu</p>
+                    <p><strong>23:00</strong> - Kolacja w lokalnej trattorii</p>
+                    <div class="romantic-element">Pierwszy wieczór we Włoszech ♥</div>
+                </div>
+                <div class="day-section">
+                    <h3>☀️ SOBOTA</h3>
+                    <p><strong>9:00</strong> - Śniadanie w Bergamo</p>
+                    <p><strong>10:00</strong> - Zwiedzanie Città Alta</p>
+                    <p><strong>14:00</strong> - Podróż do Mediolanu</p>
+                    <p><strong>16:00</strong> - Duomo i Galleria</p>
+                    <p><strong>19:00</strong> - Romantyczna kolacja</p>
+                </div>
+                <div class="day-section">
+                    <h3>🌅 NIEDZIELA</h3>
+                    <p><strong>9:00</strong> - Podróż do Como</p>
+                    <p><strong>10:30</strong> - Zwiedzanie miasta</p>
+                    <p><strong>12:00</strong> - Rejs po jeziorze</p>
+                    <p><strong>14:00</strong> - Lunch z widokiem</p>
+                    <p><strong>15:00</strong> - Powrót do Bergamo</p>
+                </div>
+                <div class="day-section">
+                    <h3>✈️ NIEDZIELA WIECZÓR</h3>
+                    <p><strong>16:20</strong> - Wylot do Polski</p>
+                    <div class="romantic-element">Arrivederci Italia! ♥</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Bergamo -->
+        <div class="slide" id="slide3">
+            <h1 class="slide-title">Bergamo - Miasto Dwóch Poziomów</h1>
+            <div class="day-plan">
+                <div class="day-section">
+                    <h3>🏰 CITTÀ ALTA (Górne Miasto)</h3>
+                    <div class="attraction">Basilica di Santa Maria Maggiore</div>
+                    <div class="attraction">Cappella Colleoni</div>
+                    <div class="attraction">Piazza Vecchia</div>
+                    <div class="attraction">Rocca di Bergamo</div>
+                    <div class="attraction">Funicolare (kolejka górska)</div>
+                    <div class="romantic-element">Spacer po średniowiecznych murach ♥</div>
+                </div>
+                <div class="day-section">
+                    <h3>🏢 CITTÀ BASSA (Dolne Miasto)</h3>
+                    <div class="attraction">Via XX Settembre (shopping)</div>
+                    <div class="attraction">Accademia Carrara</div>
+                    <div class="attraction">Sentierone (główny deptak)</div>
+                    <div class="romantic-element">Nowoczesne kawiarnie i restauracje</div>
+                </div>
+            </div>
+            <div class="info-box">
+                <h3>🍽️ Najlepsze Restauracje w Bergamo:</h3>
+                <div class="restaurant">Osteria del Borgo - tradycyjne dania lombardzkie</div>
+                <div class="restaurant">Da Mimmo - romantyczna atmosfera, widok na dolinę</div>
+                <div class="restaurant">Il Sole - pizza i pasta w Città Alta</div>
+                <div class="restaurant">Caffè del Tasso - historyczna kawiarnia na Piazza Vecchia</div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Mediolan -->
+        <div class="slide" id="slide4">
+            <h1 class="slide-title">Mediolan - Stolica Mody i Sztuki</h1>
+            <div class="day-plan">
+                <div class="day-section">
+                    <h3>🏛️ GŁÓWNE ATRAKCJE</h3>
+                    <div class="attraction">Duomo di Milano (Katedra)</div>
+                    <div class="attraction">Galleria Vittorio Emanuele II</div>
+                    <div class="attraction">Teatro alla Scala</div>
+                    <div class="attraction">Castello Sforzesco</div>
+                    <div class="attraction">Quadrilatero della Moda</div>
+                    <div class="romantic-element">Wspinaczka na dach Duomo o zachodzie ♥</div>
+                </div>
+                <div class="day-section">
+                    <h3>💕 ROMANTYCZNE MIEJSCA</h3>
+                    <div class="attraction">Parco Sempione o zmierzchu</div>
+                    <div class="attraction">Navigli - kanały z barkami</div>
+                    <div class="attraction">Brera - artystyczna dzielnica</div>
+                    <div class="romantic-element">Aperitivo w Navigli ♥</div>
+                </div>
+            </div>
+            <div class="info-box">
+                <h3>🍽️ Romantyczne Restauracje w Mediolanie:</h3>
+                <div class="restaurant">Il Luogo di Aimo e Nadia - gwiazdka Michelin</div>
+                <div class="restaurant">Trattoria Milanese - autentyczna kuchnia</div>
+                <div class="restaurant">Osteria del Borgo - w dzielnicy Brera</div>
+                <div class="restaurant">Terrazza Aperol - widok na Duomo</div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Como -->
+        <div class="slide" id="slide5">
+            <h1 class="slide-title">Como - Perła Jezior Włoskich</h1>
+            <div class="day-plan">
+                <div class="day-section">
+                    <h3>🏛️ MIASTO COMO</h3>
+                    <div class="attraction">Duomo di Como</div>
+                    <div class="attraction">Villa Olmo</div>
+                    <div class="attraction">Basilica di Sant'Abbondio</div>
+                    <div class="attraction">Funicolare do Brunate</div>
+                    <div class="romantic-element">Panorama z Brunate ♥</div>
+                </div>
+                <div class="day-section">
+                    <h3>🚢 JEZIORO COMO</h3>
+                    <div class="attraction">Rejs do Bellagio</div>
+                    <div class="attraction">Villa del Balbianello</div>
+                    <div class="attraction">Varenna - malownicze miasteczko</div>
+                    <div class="attraction">Villa Carlotta w Tremezzo</div>
+                    <div class="romantic-element">Kolacja nad jeziorem ♥</div>
+                </div>
+            </div>
+            <div class="info-box">
+                <h3>🍽️ Restauracje nad Jeziorem Como:</h3>
+                <div class="restaurant">Il Gatto Nero - Cernobbio, widok na jezioro</div>
+                <div class="restaurant">La Punta - Bellagio, na molo</div>
+                <div class="restaurant">Bilacus - Como, lokalne specjały</div>
+                <div class="restaurant">Mistral - Villa San Martino, elegancka atmosfera</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Praktyczne Informacje -->
+        <div class="slide" id="slide6">
+            <h1 class="slide-title">Praktyczne Informacje</h1>
+            <div class="day-plan">
+                <div class="day-section">
+                    <h3>🚗 TRANSPORT</h3>
+                    <p><strong>Bergamo - Mediolan:</strong> pociąg (1h) lub autobus (45 min)</p>
+                    <p><strong>Mediolan - Como:</strong> pociąg (30-45 min)</p>
+                    <p><strong>Como - Bergamo:</strong> pociąg przez Mediolan (1.5h)</p>
+                    <div class="romantic-element">Pociągi regionalne - wygodne i częste</div>
+                </div>
+                <div class="day-section">
+                    <h3>💰 BUDŻET (na 2 osoby)</h3>
+                    <p><strong>Jedzenie:</strong> 150-200€ na weekend</p>
+                    <p><strong>Transport:</strong> 50-70€</p>
+                    <p><strong>Atrakcje:</strong> 80-100€</p>
+                    <p><strong>Razem:</strong> około 300-370€</p>
+                </div>
+            </div>
+            <div class="tips">
+                <h3>💡 Przydatne Wskazówki:</h3>
+                <p><strong>• Język:</strong> podstawowy włoski lub angielski</p>
+                <p><strong>• Waluta:</strong> Euro (płatność kartą wszędzie akceptowana)</p>
+                <p><strong>• Pogoda:</strong> sprawdź prognozę, weź wygodne buty</p>
+                <p><strong>• Rezerwacje:</strong> zarezerwuj stoliki w restauracjach z wyprzedzeniem</p>
+                <p><strong>• Bilety:</strong> na Duomo w Mediolanie lepiej kupić online</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Podsumowanie -->
+        <div class="slide" id="slide7">
+            <h1 class="slide-title">Buongiorno Amore! <span class="heart">♥</span></h1>
+            <div class="slide-content">
+                <div class="romantic-element" style="font-size: 1.5em; margin: 30px 0;">
+                    "Trzy dni, trzy miasta, niezliczone wspomnienia"
+                </div>
+                <div class="day-plan">
+                    <div class="day-section">
+                        <h3>🎯 CO ZAPAMIĘTACIE</h3>
+                        <p>• Średniowieczne uliczki Bergamo</p>
+                        <p>• Majestat mediolańskiego Duomo</p>
+                        <p>• Romantyczne zachody nad Como</p>
+                        <p>• Autentyczną włoską kuchnię</p>
+                        <p>• Ciepło włoskiej gościnności</p>
+                    </div>
+                    <div class="day-section">
+                        <h3>📸 MUST-HAVE ZDJĘCIA</h3>
+                        <p>• Panorama z Città Alta w Bergamo</p>
+                        <p>• Selfie przed Duomo w Mediolanie</p>
+                        <p>• Romantyczne zdjęcie nad jeziorem Como</p>
+                        <p>• Aperitivo w Navigli</p>
+                        <p>• Zachód słońca z funicolary</p>
+                    </div>
+                </div>
+                <div class="info-box" style="text-align: center; font-size: 1.3em; margin-top: 40px;">
+                    <strong>Arrivederci e Buon Viaggio!</strong>
+                    <div class="heart" style="font-size: 2em; margin: 20px 0;">♥ ♥ ♥</div>
+                    <em>Niech ten weekend będzie początkiem pięknych wspomnień!</em>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="scrollToSlide(1)">Start</button>
+        <button class="nav-btn" onclick="scrollToSlide(2)">Plan</button>
+        <button class="nav-btn" onclick="scrollToSlide(3)">Bergamo</button>
+        <button class="nav-btn" onclick="scrollToSlide(4)">Mediolan</button>
+        <button class="nav-btn" onclick="scrollToSlide(5)">Como</button>
+        <button class="nav-btn" onclick="scrollToSlide(6)">Info</button>
+        <button class="nav-btn" onclick="scrollToSlide(7)">Koniec</button>
+    </div>
+
+    <script>
+        function scrollToSlide(slideNumber) {
+            const slide = document.getElementById('slide' + slideNumber);
+            slide.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Auto-scroll effect on load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('slide1').scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.attraction, .restaurant').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
