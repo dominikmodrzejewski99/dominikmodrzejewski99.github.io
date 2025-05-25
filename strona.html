@@ -13,9 +13,10 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #2c5530 0%, #1a4a3e 50%, #0f3460 100%);
             color: #333;
             overflow-x: hidden;
+            padding-bottom: 80px;
         }
 
         .presentation {
@@ -45,7 +46,7 @@
 
         .slide-title {
             font-size: 2.5em;
-            color: #2c3e50;
+            color: #1a472a;
             text-align: center;
             margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -53,7 +54,7 @@
 
         .slide-subtitle {
             font-size: 1.8em;
-            color: #e74c3c;
+            color: #c8102e;
             text-align: center;
             margin-bottom: 40px;
             font-style: italic;
@@ -73,20 +74,20 @@
         }
 
         .day-section {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.8);
             padding: 25px;
             border-radius: 15px;
-            border-left: 5px solid #e74c3c;
+            border-left: 5px solid #c8102e;
         }
 
         .day-section h3 {
-            color: #2c3e50;
+            color: #1a472a;
             font-size: 1.5em;
             margin-bottom: 15px;
         }
 
         .attraction {
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            background: linear-gradient(45deg, #2c5530, #1a472a);
             color: white;
             padding: 15px;
             margin: 10px 0;
@@ -97,7 +98,7 @@
         }
 
         .restaurant {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            background: linear-gradient(45deg, #c8102e, #9b0c23);
             color: white;
             padding: 15px;
             margin: 10px 0;
@@ -108,8 +109,8 @@
         }
 
         .info-box {
-            background: rgba(52, 152, 219, 0.1);
-            border: 2px solid #3498db;
+            background: rgba(26, 71, 42, 0.1);
+            border: 2px solid #1a472a;
             padding: 20px;
             border-radius: 15px;
             margin: 20px 0;
@@ -123,7 +124,7 @@
         }
 
         .flight-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1a472a, #2c5530);
             color: white;
             padding: 25px;
             border-radius: 15px;
@@ -132,7 +133,7 @@
         }
 
         .heart {
-            color: #e74c3c;
+            color: #c8102e;
             font-size: 1.5em;
             animation: heartbeat 1.5s infinite;
         }
@@ -143,21 +144,21 @@
         }
 
         .map-placeholder {
-            background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            background: linear-gradient(45deg, #f4e4bc, #ddd3a0);
             height: 200px;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5em;
-            color: #2d3436;
+            color: #1a472a;
             margin: 20px 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .tips {
-            background: rgba(46, 204, 113, 0.1);
-            border: 2px solid #2ecc71;
+            background: rgba(200, 16, 46, 0.1);
+            border: 2px solid #c8102e;
             padding: 20px;
             border-radius: 15px;
             margin: 20px 0;
@@ -165,22 +166,36 @@
 
         .navigation {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
             z-index: 1000;
         }
 
         .nav-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #1a472a, #2c5530);
             color: white;
             border: none;
-            padding: 15px 25px;
-            margin: 5px;
-            border-radius: 25px;
+            padding: 12px 18px;
+            margin: 3px;
+            border-radius: 20px;
             cursor: pointer;
-            font-size: 16px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            min-width: 80px;
+            text-align: center;
         }
 
         .nav-btn:hover {
@@ -197,15 +212,110 @@
         }
 
         @media (max-width: 768px) {
+            .presentation {
+                padding: 10px;
+            }
+            
             .day-plan {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
+            
             .flight-info {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
+            
             .slide {
-                padding: 20px;
-                margin: 10px;
+                padding: 20px 15px;
+                margin: 10px 0;
+                min-height: auto;
+                border-radius: 15px;
+            }
+            
+            .slide-title {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+                line-height: 1.2;
+            }
+            
+            .slide-subtitle {
+                font-size: 1.3em;
+                margin-bottom: 25px;
+            }
+            
+            .slide-content {
+                font-size: 1.1em;
+            }
+            
+            .day-section {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .day-section h3 {
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+            
+            .attraction, .restaurant {
+                padding: 12px;
+                margin: 8px 0;
+                font-size: 0.9em;
+            }
+            
+            .flight-card {
+                padding: 20px 15px;
+            }
+            
+            .info-box, .tips {
+                padding: 15px;
+                margin: 15px 0;
+            }
+            
+            .navigation {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 10px 5px;
+                box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 5px;
+                z-index: 1000;
+            }
+            
+            .nav-btn {
+                flex: 1;
+                min-width: 45px;
+                padding: 8px 4px;
+                margin: 2px;
+                font-size: 11px;
+                border-radius: 15px;
+                text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            body {
+                padding-bottom: 70px;
+            }
+            
+            .romantic-element {
+                font-size: 1em;
+                margin: 10px 0;
+            }
+            
+            .map-placeholder {
+                height: 150px;
+                font-size: 1.2em;
             }
         }
     </style>
